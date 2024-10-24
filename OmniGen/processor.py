@@ -185,8 +185,8 @@ class OmniGenCollator:
             if pad_l > 0:
                 pad_mask = torch.zeros(size=(temp_l+1+img_length, pad_l))
                 temp_mask = torch.cat([pad_mask, temp_mask], dim=-1)
-
-                pad_mask = torch.ones(size=(pad_l, seq_len))
+                
+                pad_mask = torch.tril(torch.ones(size=(pad_l, seq_len)))
                 temp_mask = torch.cat([pad_mask, temp_mask], dim=0)
 
             true_img_length = num_tokens_for_output_images[inx]
