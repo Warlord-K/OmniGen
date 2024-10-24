@@ -51,7 +51,8 @@ class OmniGenProcessor:
 
 
     def process_image(self, image):
-        image = Image.open(image).convert('RGB')
+        if type(image) == str:
+            image = Image.open(image).convert('RGB')
         return self.image_transform(image)
     
     def process_multi_modal_prompt(self, text, input_images):
